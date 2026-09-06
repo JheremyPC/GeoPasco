@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f2f3f">
+
+    <title>GeoPasco | Sistema de Información Geográfica</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+    <header class="header">
+
+        <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+                <img src="logo.svg" alt="">
+            </div>
+
+            <div class="brand-copy">
+                <div class="brand-name">Geo<span>Pasco</span></div>
+                <div class="brand-subtitle">Sistema de Información Geográfica</div>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <span class="header-tagline">Conectando lugares, impulsando oportunidades</span>
+            <span class="header-location">📍 Cerro de Pasco, Perú</span>
+        </div>
+
+        <div class="developer-badge">
+            <span class="developer-label">Desarrollado por</span>
+            <strong>JheremyPC</strong>
+            <span class="developer-caption">Tecnología con propósito</span>
+        </div>
+
+        <div class="header-status" title="Estado del sistema">
+            <span class="status-dot"></span>
+            <span>Sistema operativo</span>
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+    <main class="main-container">
+
+        <!-- PANEL LATERAL -->
+        <aside class="sidebar" aria-label="Panel de control de GeoPasco">
+
+            <section class="panel-section search-section">
+                <div class="section-kicker">EXPLORA EL MAPA</div>
+                <h2>Buscar lugares</h2>
+                <p>Encuentra servicios, establecimientos y puntos de interés en Cerro de Pasco.</p>
+
+                <div class="search-box">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Ej. hospital, colegio, banco..."
+                        aria-label="Buscar lugar"
+                        autocomplete="off"
+                    >
+                    <button id="searchButton" aria-label="Buscar">Buscar</button>
+                </div>
+
+                <button id="locationButton" class="location-button">
+                    <span class="button-icon">⌖</span>
+                    <span>
+                        <strong>Mi ubicación</strong>
+                        <small>Encuentra tu posición actual</small>
+                    </span>
+                </button>
+
+                <div id="systemStatus" class="system-status">
+                    <span class="status-mini-dot"></span>
+                    <span>Listo para buscar</span>
+                </div>
+            </section>
+
+
+            <section class="panel-section categories">
+                <div class="section-heading-row">
+                    <div>
+                        <div class="section-kicker">CATEGORÍAS</div>
+                        <h3>Explora por tipo</h3>
+                    </div>
+                    <span class="category-hint">6 categorías</span>
+                </div>
+
+                <div class="category-grid">
+                    <button class="category-button active" data-category="Todos" data-search="">
+                        <span class="category-icon">◉</span>
+                        <span>Todos</span>
+                    </button>
+
+                    <button class="category-button" data-category="Salud" data-search="hospitales y centros de salud">
+                        <span class="category-icon">✚</span>
+                        <span>Salud</span>
+                    </button>
+
+                    <button class="category-button" data-category="Educación" data-search="colegios y universidades">
+                        <span class="category-icon">▣</span>
+                        <span>Educación</span>
+                    </button>
+
+                    <button class="category-button" data-category="Gobierno" data-search="municipalidad y entidades públicas">
+                        <span class="category-icon">⌂</span>
+                        <span>Gobierno</span>
+                    </button>
+
+                    <button class="category-button" data-category="Seguridad" data-search="comisarías y policía">
+                        <span class="category-icon">◆</span>
+                        <span>Seguridad</span>
+                    </button>
+
+                    <button class="category-button" data-category="Comercio" data-search="tiendas y comercios">
+                        <span class="category-icon">▰</span>
+                        <span>Comercio</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <section class="panel-section information">
+                <div class="section-kicker">INFORMACIÓN</div>
+                <h3>Resumen del sistema</h3>
+
+                <div class="info-card">
+                    <div>
+                        <span class="info-label">Lugares registrados</span>
+                        <strong id="placeCount">0</strong>
+                    </div>
+                    <span class="info-card-icon">⌖</span>
+                </div>
+
+                <div class="selected-place">
+                    <div class="selected-badge">SELECCIÓN ACTUAL</div>
+                    <h4 id="selectedName">Ningún lugar seleccionado</h4>
+                    <p id="selectedCategory">Selecciona un marcador en el mapa.</p>
+                </div>
+
+                <div class="results-section">
+                    <div class="results-header">
+                        <h3>Resultados</h3>
+                        <span class="results-caption">Google Places</span>
+                    </div>
+
+                    <div id="resultsList">
+                        <div class="empty-results">
+                            <div class="empty-icon">⌖</div>
+                            <strong>Busca un lugar</strong>
+                            <span>Los resultados aparecerán aquí.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="sidebar-watermark">JheremyPC</div>
+        </aside>
+
+
+        <!-- MAPA -->
+        <section class="map-container" aria-label="Mapa de GeoPasco">
+            <div class="map-topbar">
+                <div class="map-context">
+                    <span class="map-context-dot"></span>
+                    <span>Vista activa</span>
+                    <strong>Cerro de Pasco</strong>
+                </div>
+                <div class="map-context-note">Google Maps Platform</div>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="map-watermark watermark-one">JheremyPC</div>
+            <div class="map-watermark watermark-two">JheremyPC</div>
+
+            <div class="map-legend">
+                <span class="legend-title">GeoPasco</span>
+                <span>Mapa interactivo</span>
+                <span class="legend-divider"></span>
+                <span>Pasco, Perú</span>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ====================================================== -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <img src="logo.svg" alt="Logo GeoPasco">
+            <div>
+                <strong>GeoPasco</strong>
+                <span>Sistema de Información Geográfica</span>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <span>Explora lugares</span>
+            <span>Conoce servicios</span>
+            <span>Obtén rutas y tiempos</span>
+        </div>
+
+        <div class="footer-credit">
+            <span>Desarrollado por</span>
+            <strong>JheremyPC</strong>
+            <span>© 2026</span>
+        </div>
+    </footer>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+    <script src="app.js" defer></script>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa4tXh8eywGBeJShLI5uYgwGXMllZ5ddc&callback=initMap&v=weekly"
+        defer>
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Logo GeoPasco">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10a66a"/>
+      <stop offset="100%" stop-color="#0a6f98"/>
+    </linearGradient>
+  </defs>
+  <path d="M10 103 42 68l17 18 25-34 34 51H10Z" fill="url(#g)"/>
+  <path d="M20 103 42 79l11 12 15-20 18 32H20Z" fill="#0d3b52" opacity=".92"/>
+  <path d="M72 17c-15.3 0-27.8 12.4-27.8 27.7 0 20.3 27.8 42.9 27.8 42.9S99.8 65 99.8 44.7C99.8 29.4 87.3 17 72 17Z" fill="#0e9f66"/>
+  <circle cx="72" cy="44.5" r="10.8" fill="#fff"/>
+  <circle cx="72" cy="44.5" r="6" fill="#0e9f66"/>
+</svg>
